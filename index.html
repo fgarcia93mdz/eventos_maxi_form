@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro al Evento</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 10px;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      color: #cc0000;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #cc0000;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #a30000;
+    }
+
+    /* Pantalla de agradecimiento */
+    .pantalla-gracias {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .gracias-container {
+      background-color: #e8f5e9;
+      border: 2px solid #4caf50;
+      padding: 30px 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .gracias-container h2 {
+      color: #2e7d32;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .gracias-container p {
+      color: #333;
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1rem;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+
+      .gracias-container {
+        padding: 20px;
+      }
+
+      .gracias-container h2 {
+        font-size: 20px;
+      }
+
+      .gracias-container p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Registro al Evento</h1>
+  </header>
+
+  <div class="main">
+    <div class="form-container">
+      <h2>Formulario de Participación</h2>
+      <form id="registroEventoForm">
+        <!-- Campo oculto: tipo de evento -->
+        <input type="hidden" id="evento" name="evento" value="Arminera_2025" />
+
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="nombre" required maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido *</label>
+          <input type="text" id="apellido" name="apellido" required maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono *</label>
+          <input type="tel" id="telefono" name="telefono" required maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico *</label>
+          <input type="email" id="email" name="email" required maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="empresa">Empresa</label>
+          <input type="text" id="empresa" name="empresa" maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="cargo">Cargo</label>
+          <input type="text" id="cargo" name="cargo" maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="ubicacion">Ubicación</label>
+          <input type="text" id="ubicacion" name="ubicacion" maxlength="255" />
+        </div>
+        <div class="form-group">
+          <label for="comentarios">Comentarios</label>
+          <textarea id="comentarios" name="comentarios" maxlength="255" rows="3"></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Pantalla de agradecimiento -->
+  <div id="mensajeGracias" style="display: none;" class="pantalla-gracias">
+    <div class="gracias-container">
+      <h2>✅ ¡Gracias por registrarte!</h2>
+      <p>Tu información fue enviada correctamente.<br>Serás redirigido al formulario en unos segundos...</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registroEventoForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = {
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        empresa: document.getElementById('empresa').value,
+        cargo: document.getElementById('cargo').value,
+        ubicacion: document.getElementById('ubicacion').value,
+        comentarios: document.getElementById('comentarios').value,
+        evento: document.getElementById('evento').value
+      };
+
+      fetch('https://prod-170.westus.logic.azure.com:443/workflows/57687334adcd493b84b850a7893ed6c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=HyTcYe_QHoT8B9MbN31sNIIV96jITP_8qQdGwiEfvYk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+          if (response.ok) {
+            // Mostrar pantalla de gracias
+            document.getElementById('mensajeGracias').style.display = 'flex';
+
+            // Resetear formulario
+            document.getElementById('registroEventoForm').reset();
+
+            // Ocultar cartel y volver al formulario
+            setTimeout(() => {
+              document.getElementById('mensajeGracias').style.display = 'none';
+            }, 5000);
+          } else {
+            alert("Ocurrió un error al enviar el formulario.");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("Error de red al enviar el formulario.");
+        });
+    });
+  </script>
+</body>
+</html>
